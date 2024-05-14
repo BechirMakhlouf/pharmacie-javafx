@@ -10,10 +10,10 @@ import java.util.List;
 public class MedicamentDAO implements DAO<Medicament> {
 
     @Override
-    public Medicament get(int id) throws SQLException {
+    public Medicament get(String id) throws SQLException {
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM Medicaments WHERE codeMed = ?");
-        statement.setInt(1, id);
+        statement.setString(1, id);
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
@@ -47,11 +47,6 @@ public class MedicamentDAO implements DAO<Medicament> {
         }
 
         return medicaments;
-    }
-
-    @Override
-    public int save(Medicament medicament) throws SQLException {
-        return insert(medicament);
     }
 
     @Override
