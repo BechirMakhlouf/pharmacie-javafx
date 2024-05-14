@@ -61,6 +61,24 @@ public class UserDAO implements DAO<User> {
         return statement.executeUpdate();
     }
 
+    public User getByEmail(String email) throws SQLException {
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE email = ?");
+        statement.setString(1, email);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            return new User(
+                    resultSet.getString("code"),
+                    resultSet.getString("email"),
+                    resultSet.getString("mp"),
+                    resultSet.getString("nom"),
+                    resultSet.getString("numTel")
+            );
+        }
+
+        return null;
+    }
     @Override
     public int update(User user) throws SQLException {
         Connection connection = Database.getInstance().getConnection();

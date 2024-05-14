@@ -1,5 +1,7 @@
 package com.cinema.pharmacie.model;
 
+import com.cinema.pharmacie.util.Security;
+
 public class User {
     private String code;
     private String email;
@@ -10,10 +12,11 @@ public class User {
     public User(String code, String email, String mp, String nom, String numTel) {
         this.code = code;
         this.email = email;
-        this.mp = mp;
+        this.mp = Security.hashPassword(mp);
         this.nom = nom;
         this.numTel = numTel;
     }
+
     public String getCode() {
         return code;
     }
@@ -33,7 +36,6 @@ public class User {
         return numTel;
     }
 
-    // Setters
     public void setCode(String code) {
         this.code = code;
     }
@@ -43,7 +45,7 @@ public class User {
     }
 
     public void setMp(String mp) {
-        this.mp = mp;
+        this.mp = Security.hashPassword(mp);
     }
 
     public void setNom(String nom) {
