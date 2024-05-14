@@ -17,6 +17,7 @@ public class PatientMed {
         this.med = med;
         this.patient = patient;
     }
+
     public int getQte() {
         return Qte;
     }

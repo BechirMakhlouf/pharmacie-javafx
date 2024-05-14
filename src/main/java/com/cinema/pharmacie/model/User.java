@@ -10,6 +10,7 @@ public class User {
     private String numTel;
 
     public User(String code, String email, String mp, String nom, String numTel) {
+        // TODO: verify email
         this.code = code;
         this.email = email;
         this.mp = Security.hashPassword(mp);

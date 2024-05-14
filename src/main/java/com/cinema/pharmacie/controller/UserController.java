@@ -11,16 +11,15 @@ import java.sql.SQLException;
 public class UserController {
     private final UserDAO userDao = new UserDAO();
 
-    public User registerUser(String email, String password, String name, String phoneNumber) {
+    public User registerUser(String email, String password, String name, String mp) {
         String code = Security.generateRandomId();
-        User newUser = new User(code, email, password, name, phoneNumber);
+        User newUser = new User(code, email, password, name, mp);
 
         try {
             userDao.insert(newUser);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return newUser;
     }
 
